@@ -1,0 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap");
+
+* {
+  font-family: "Roboto", sans-serif;
+}
+
+#marquee {
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 4rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+
+  & > * {
+    padding: 0 3.5rem 0;
+    display: block;
+    flex: 0 0 auto;
+  }
+}
