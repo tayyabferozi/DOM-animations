@@ -1,6 +1,7 @@
 $(function () {
   let i = -20;
-  let step = 0.1;
+  let step = 1;
+  const initialStep = step;
   let direction = "right";
 
   let lastScrollTop = 0;
@@ -19,18 +20,17 @@ $(function () {
       }
     } else if (direction === "right") {
       if (i < -limit || i > 0) {
-        i = -1273;
+        i = -limit;
       } else {
         i += step;
       }
     }
-    if (step > 0.1) {
-      // step -= 0.01;
+    if (step > initialStep) {
       const shouldBeSubtractedThis = step / 0.00005;
       step = step - shouldBeSubtractedThis;
-      if (step < 0.1) {
-        step = 0.1;
-      }
+    }
+    if (step < initialStep) {
+      step = initialStep;
     }
     $("#marquee").css("margin-left", i + "px");
   }, 5);
@@ -77,7 +77,9 @@ $(function () {
 
   // listen to "scroll" event
   window.onscroll = function () {
-    const scrollSpeed = Math.abs(checkScrollSpeed() / 4);
-    step = scrollSpeed;
+    const scrollSpeed = Math.abs(checkScrollSpeed() * 2);
+    console.log(step);
+    step = step * scrollSpeed;
+    console.log(step);
   };
 });
