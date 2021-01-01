@@ -1,6 +1,6 @@
 $(function () {
   let i = -20;
-  let step = 1;
+  let step = 0.1;
   const initialStep = step;
   let direction = "right";
 
@@ -53,7 +53,7 @@ $(function () {
       newPos,
       timer,
       delta,
-      delay = settings.delay || 50; // in "ms" (higher means lower fidelity )
+      delay = settings.delay || 50;
 
     function clear() {
       lastPos = null;
@@ -65,7 +65,6 @@ $(function () {
     return function () {
       newPos = window.scrollY;
       if (lastPos != null) {
-        // && newPos < maxScroll
         delta = newPos - lastPos;
       }
       lastPos = newPos;
@@ -75,11 +74,8 @@ $(function () {
     };
   })();
 
-  // listen to "scroll" event
   window.onscroll = function () {
     const scrollSpeed = Math.abs(checkScrollSpeed() * 2);
-    console.log(step);
     step = step * scrollSpeed;
-    console.log(step);
   };
 });
